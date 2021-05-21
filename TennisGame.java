@@ -1,10 +1,10 @@
 
 public class TennisGame {
-    public int P1point = 0;
-    public int P2point = 0;
+    private int P1point = 0;        //TODO make these private ?
+    private int P2point = 0;        //TODO make these private ?
 
-    public String P1res = "";
-    public String P2res = "";
+    public String P1res = "";       //TODO DELETE
+    public String P2res = "";       //TODO DELETE
     private String player1Name;
     private String player2Name;
     final private String[] SCORES = {"Love", "Fifteen", "Thirty", "Forty"};
@@ -21,14 +21,12 @@ public class TennisGame {
             score = tie(P1point);
         }
 
-
         if (!win().isEmpty()){
             return win();
         }
         if (!advantage().isEmpty()) {
             return advantage();
         }
-        
         return score;
     }
 
@@ -47,7 +45,6 @@ public class TennisGame {
         if (P2point > P1point && P1point >= 3) {
             return "Advantage player2";
         }
-        System.out.println(P2point + " " + P1point);
         return "";
     }
 
@@ -69,13 +66,10 @@ public class TennisGame {
         return "";
     }
 
-
     public void SetP1Score(int number) {
-
         for (int i = 0; i < number; i++) {
             P1Score();
         }
-
     }
 
     public void SetP2Score(int number) {
