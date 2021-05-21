@@ -17,11 +17,10 @@ public class TennisGame {
     public String getScore() {
         String score = scoring(P1point) + "-" + scoring(P2point);
 
-        if (P1point == P2point && P1point < 4) {
-            score = scoring(P1point) + "-All";
+        if (P1point == P2point) {
+            score = tie(P1point);
         }
-        if (P1point == P2point && P1point >= 3)
-            score = "Deuce";
+
 
         if (!win().isEmpty()){
             return win();
@@ -41,7 +40,7 @@ public class TennisGame {
         }
     }
 
-    public String advantage (){
+    public String advantage(){
         if (P1point > P2point && P2point >= 3) {
             return "Advantage player1";
         }
@@ -52,6 +51,13 @@ public class TennisGame {
         return "";
     }
 
+    public String tie(int points){
+        if(points < 3){
+            return scoring(P1point) + "-All";
+        }else{
+            return "Deuce";
+        }
+    }
 
     public String win (){
         if (P1point >= 4 && P2point >= 0 && (P1point - P2point) >= 2) {
