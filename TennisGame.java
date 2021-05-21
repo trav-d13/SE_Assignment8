@@ -15,33 +15,18 @@ public class TennisGame {
     }
 
     public String getScore() {
-        String score = "";
+        String score = scoring(P1point) + "-" + scoring(P2point);
+
         if (P1point == P2point && P1point < 4) {
-            score = scoring(P1point);
-            score += "-All";
+            score = scoring(P1point) + "-All";
         }
         if (P1point == P2point && P1point >= 3)
             score = "Deuce";
 
-        if (P1point > 0 && P2point == 0) {
-            score = scoring(P1point) + "-" + scoring(P2point);
-        }
-        if (P2point > 0 && P1point == 0) {
-            score = scoring(P1point) + "-" + scoring(P2point);
-        }
-
-        if (P1point > P2point && P1point < 4) {
-            score = scoring(P1point) + "-" + scoring(P2point);
-        }
-        if (P2point > P1point && P2point < 4) {
-            score = scoring(P1point) + "-" + scoring(P2point);
-        }
-
         if (!win().isEmpty()){
             return win();
         }
-        if (!advantage().isEmpty())
-        {
+        if (!advantage().isEmpty()) {
             return advantage();
         }
         
@@ -49,7 +34,7 @@ public class TennisGame {
     }
 
     public String scoring(int points){
-        if (points>3){
+        if (points > 3){
             return "";
         }else{
             return SCORES[points];
