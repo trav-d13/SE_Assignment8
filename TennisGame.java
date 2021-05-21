@@ -1,4 +1,19 @@
-
+/**
+ * Identify 3 code smells in this code
+ *      - Long method
+ *         --> extract method
+ *              * We grouped code fragments together and moved them to separate methods
+ *              * win() and advantage() and tie() and scoring(int points)
+ *         --> decompose conditional
+ *              * We replaced complex conditionals statements by less complicated ones
+ *                and replaced the if part by method calls.
+ *              * We used this approach in the case of win() and advantage() and tie()
+ *      - Duplicate code
+ *          --> extract method
+ *              * We grouped together the code duplication that occurred in the original if statements
+ *                of the getScore() method into scoring(int points) and replaced this inside the method.
+ *
+ */
 public class TennisGame {
     private int P1point = 0;        //TODO make these private ?
     private int P2point = 0;        //TODO make these private ?
@@ -15,21 +30,22 @@ public class TennisGame {
     }
 
     public String getScore() {
-        String score = scoring(P1point) + "-" + scoring(P2point);
+        String score = scoring(P1point) + "-" + scoring(P2point);       //duplicate code
 
-        if (P1point == P2point) {
+        if (P1point == P2point) {    // decompose conditional
             score = tie(P1point);
         }
 
-        if (!win().isEmpty()){
+        if (!win().isEmpty()){          // decompose conditional
             return win();
         }
-        if (!advantage().isEmpty()) {
+        if (!advantage().isEmpty()) {    // decompose conditional
             return advantage();
         }
         return score;
     }
 
+    // extract method
     public String scoring(int points){
         if (points > 3){
             return "";
@@ -38,6 +54,7 @@ public class TennisGame {
         }
     }
 
+    // extract method
     public String advantage(){
         if (P1point > P2point && P2point >= 3) {
             return "Advantage player1";
@@ -48,6 +65,7 @@ public class TennisGame {
         return "";
     }
 
+    // extract method
     public String tie(int points){
         if(points < 3){
             return scoring(P1point) + "-All";
@@ -56,6 +74,7 @@ public class TennisGame {
         }
     }
 
+    // extract method
     public String win (){
         if (P1point >= 4 && P2point >= 0 && (P1point - P2point) >= 2) {
             return "Win for player1";
