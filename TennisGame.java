@@ -47,11 +47,12 @@ public class TennisGame {
 
             score = P1res + "-" + P2res;
         }
+        if (!win().isEmpty()){
+            return win();
+        }
         if (!advantage().isEmpty())
         {
             return advantage();
-        }if (!win().isEmpty()){
-            return win();
         }
 
 
