@@ -7,7 +7,7 @@ public class TennisGame {
     public String P2res = "";
     private String player1Name;
     private String player2Name;
-    private String[] scores = {"Love", "Fifteen", "Thirty", "Forty"};
+    final private String[] SCORES = {"Love", "Fifteen", "Thirty", "Forty"};
 
     public TennisGame(String player1Name, String player2Name) {
         this.player1Name = player1Name;
@@ -17,36 +17,26 @@ public class TennisGame {
     public String getScore() {
         String score = "";
         if (P1point == P2point && P1point < 4) {
-            score = scores[P1point];
+            score = scoring(P1point);
             score += "-All";
         }
         if (P1point == P2point && P1point >= 3)
             score = "Deuce";
 
         if (P1point > 0 && P2point == 0) {
-            //TODO
-            P2res = scores[P2point];
-            P1res = scores[P1point];
-            score = P1res + "-" + P2res;
+            score = scoring(P1point) + "-" + scoring(P2point);
         }
         if (P2point > 0 && P1point == 0) {
-            //TODO
-            P2res = scores[P2point];
-            P1res = scores[P1point];
-            score = P1res + "-" + P2res;
+            score = scoring(P1point) + "-" + scoring(P2point);
         }
 
         if (P1point > P2point && P1point < 4) {
-            P2res = scores[P2point];
-            P1res = scores[P1point];
-            score = P1res + "-" + P2res;
+            score = scoring(P1point) + "-" + scoring(P2point);
         }
         if (P2point > P1point && P2point < 4) {
-            P2res = scores[P2point];
-            P1res = scores[P1point];
-
-            score = P1res + "-" + P2res;
+            score = scoring(P1point) + "-" + scoring(P2point);
         }
+
         if (!win().isEmpty()){
             return win();
         }
@@ -54,11 +44,17 @@ public class TennisGame {
         {
             return advantage();
         }
-
-
+        
         return score;
     }
 
+    public String scoring(int points){
+        if (points>3){
+            return "";
+        }else{
+            return SCORES[points];
+        }
+    }
 
     public String advantage (){
         if (P1point > P2point && P2point >= 3) {
